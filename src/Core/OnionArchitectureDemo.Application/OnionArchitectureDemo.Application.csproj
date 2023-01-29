@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Dtos\" />
+    <Folder Include="Exception\" />
+    <Folder Include="Mapping\" />
+    <Folder Include="Parameters\" />
+    <Folder Include="Wrappers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OnionArchitectureDemo.Domain\OnionArchitectureDemo.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
