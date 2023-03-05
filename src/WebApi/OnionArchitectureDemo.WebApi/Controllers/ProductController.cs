@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using OnionArchitectureDemo.Application.Interfaces.Repository;
+using OnionArchitectureDemo.Application.Features.Commands.CreateProduct;
+using OnionArchitectureDemo.Application.Features.Queries.GetAllProducts;
 
 namespace OnionArchitectureDemo.WebApi.Controllers
 {
@@ -8,12 +9,24 @@ namespace OnionArchitectureDemo.WebApi.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        public readonly IProductRepository ProductRepository { get; set; }
+        private readonly IMediator _mediator;
+
+        public ProductController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
+            var query = new GetAllProductsQuery();
+            return Ok(_mediator.Send(query));
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> Add(CreateProductCommand command)
+        {
+            return Ok(await _mediator.Send(command));
         }
     }
 }
